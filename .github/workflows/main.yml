@@ -2,7 +2,7 @@ name: Main Workflow
 on:
   push:
     branches:
-      - main
+      - mains
 
 jobs:
   build:
@@ -12,12 +12,24 @@ jobs:
       - name: Set variable value
         run: echo "VARIABLE_VALUE=20" > variable.txt
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
         with:
-          name: shared-data
-          path: variable.txt
-        
+          tag_name: v1
+          release_name: Release v1
+          body: |
+            Variable value: 20
+          draft: false
+          prerelease: false
+
+      - name: Upload asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./variable.txt
+          asset_name: variable.txt
+          asset_content_type: text/plain
       
 
 
