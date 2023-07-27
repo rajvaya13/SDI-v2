@@ -1,0 +1,28 @@
+name: Read and Delete File with Variables
+
+on:
+  workflow_run:
+    workflows:
+      - "Create File with Variables"
+    types:
+      - completed
+
+jobs:
+  read_and_delete_file_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Read variables from txt file and use them
+        run: |
+          while IFS= read -r line; do
+            export "$line"
+          done < variables.txt
+          echo "VAR1: $VAR1"
+          echo "VAR2: $VAR2"
+          # Use the variables as needed in your actions
+
+      - name: Delete txt file
+        run: rm variables.txt
