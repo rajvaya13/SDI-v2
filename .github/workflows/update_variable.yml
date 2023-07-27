@@ -2,7 +2,7 @@ name: Update Variable File
 on:
   push:
     branches:
-      - main # Change this to the branch you want the workflow to trigger on
+      - main # Change this to the branch you want the workflow to trigger ons
 
 jobs:
   update_variable:
