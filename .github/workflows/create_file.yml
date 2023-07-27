@@ -3,7 +3,7 @@ name: Create File with Variables
 on:
   push:
     branches:
-      - main  # Change this to your main branch name if necessary
+      - mains  # Change this to your main branch name if necessary
 
 jobs:
   create_file_job:
