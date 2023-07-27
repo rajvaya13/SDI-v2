@@ -6,32 +6,18 @@ on:
     types:
       - completed
     
-#on:
- # push:
-  #  branches:
-   #   - main
-
 jobs:
-  jobtwo:
+  use_variable:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Step 1
-        uses: actions/checkout@v2
- 
-      - name: Step 2
-        run: echo "This is step 2."  
-        
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+          name: shared-data
+          path: shared-data
 
-      - name: Load variable from artifact
-        id: load_variable
+      - name: Read variable value
         run: |
-          echo ::set-output name=my_variable::$(cat my_variable.env)
-
-      - name: Use the variable
-        run: |
-          echo "My variable value is ${{ steps.load_variable.outputs.my_variable }}"        
+          VARIABLE_VALUE=$(cat shared-data/variable.txt)
+          echo "Variable value from main workflow: $VARIABLE_VALUE"
