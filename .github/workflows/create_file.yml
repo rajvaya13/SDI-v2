@@ -22,8 +22,10 @@ jobs:
       - name: Show the content of variables.txt
         run: cat variables.txt
 
-      - name: Upload txt file
-        uses: actions/upload-artifact@v2
-        with:
-          name: variables-file
-          path: variables.txt
+      - name: Commit variables.txt
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add variables.txt
+          git commit -m "Add variables.txt"
+          git push
