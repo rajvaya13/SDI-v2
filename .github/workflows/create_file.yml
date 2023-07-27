@@ -22,11 +22,13 @@ jobs:
       - name: Show the content of variables.txt
         run: cat variables.txt
 
-      - name: Create branch and push changes
+      - name: Configure Git
         run: |
-          git config --local user.email "raj.vaya2017@gmail.com"
-          git config --local user.name "rajvaya13"
-          git checkout -b update-variables
+          git config --global user.email "raj.vaya2017@gmail.com"
+          git config --global user.name "rajvaya13"
+
+      - name: Commit changes
+        run: |
           git add variables.txt
           git commit -m "Add variables.txt"
-          git push origin update-variables
+          git push origin main
