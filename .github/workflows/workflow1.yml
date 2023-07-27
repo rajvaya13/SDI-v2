@@ -16,4 +16,17 @@ jobs:
  
       - name: Step 2
         run: echo "This is step 2."  
-        #adc
+        
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+
+      - name: Load variable from artifact
+        id: load_variable
+        run: |
+          echo ::set-output name=my_variable::$(cat my_variable.env)
+
+      - name: Use the variable
+        run: |
+          echo "My variable value is ${{ steps.load_variable.outputs.my_variable }}"        
