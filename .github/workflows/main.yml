@@ -2,7 +2,7 @@ name: Main Workflow
 on:
   push:
     branches:
-      - main
+      - mains
 
 jobs:
   release:
@@ -14,17 +14,7 @@ jobs:
  
       - name: Step 2 of Workflow 2nd
         run: echo "This is step 2 of Workflow A."    
+        
+      
 
-      - name: Set variable and create artifact
-        run: |
-          echo "MY_VARIABLE=20" > my_variable.env
-          echo "ANOTHER_VARIABLE=Hello" > another_variable.env
-          echo "YET_ANOTHER_VARIABLE=123" > yet_another_variable.env
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: |
-            my_variable.env
-            another_variable.env
-            yet_another_variable.env
