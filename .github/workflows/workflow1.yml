@@ -1,13 +1,13 @@
-name: The Main Workflow
+name: The sub Workflow
 
 on:
   workflow_run:
-    workflows: ["Secondary Workflow"]
+    workflows: ["Main Workflow"]
     types:
       - completed
 
 jobs:
-  jobMain:
+  jobtwo:
     runs-on: ubuntu-latest
 
     steps:
