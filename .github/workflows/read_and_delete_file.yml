@@ -14,15 +14,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_commit.id }}
+          path: my_temp_branch  # You can specify a temporary branch name
 
       - name: Read variables from txt file and use them
         run: |
           while IFS= read -r line; do
             export "$line"
-          done < variables.txt
+          done < my_temp_branch/variables.txt
           echo "VAR1: $VAR1"
           echo "VAR2: $VAR2"
           # Use the variables as needed in your actions
 
       - name: Delete txt file
-        run: rm variables.txt
+        run: rm my_temp_branch/variables.txt
