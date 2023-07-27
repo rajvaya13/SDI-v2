@@ -1,10 +1,15 @@
 name: The sub Workflow
 
+#on:
+ # workflow_run:
+  #  workflows: ["Main Workflow"]
+   # types:
+    #  - completed
+    
 on:
-  workflow_run:
-    workflows: ["Main Workflow"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   jobtwo:
