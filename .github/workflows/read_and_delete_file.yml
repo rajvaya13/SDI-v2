@@ -3,7 +3,7 @@ name: Read and Delete File with Variables
 on:
   workflow_run:
     workflows:
-      - "Create File with Variables"
+      - "Create File with Variable"
     types:
       - completed
 
