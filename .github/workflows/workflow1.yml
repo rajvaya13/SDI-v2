@@ -2,7 +2,7 @@ name: The Main Workflow
 
 on:
   workflow_run:
-    workflows: ["Secondary Workflow" , "third Workflow"]
+    workflows: ["Secondary Workflow"]
     types:
       - completed
 
