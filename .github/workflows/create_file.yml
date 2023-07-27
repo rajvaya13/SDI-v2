@@ -3,8 +3,7 @@ name: Create File with Variables
 on:
   push:
     branches:
-      - main
-      # Change this to your main branch name if necessary
+      - main  # Change this to your main branch name if necessary
 
 jobs:
   create_file_job:
@@ -27,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: variables-file
-          path: my_temp_branch/variables.txt
+          path: variables.txt
