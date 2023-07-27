@@ -5,31 +5,21 @@ on:
       - main
 
 jobs:
-  build:
+  create_file_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set variable value
-        run: echo "VARIABLE_VALUE=20" > variable.txt
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Set variables and create txt file
+        run: |
+          echo "VAR1=value1" > variables.txt
+          echo "VAR2=value2" >> variables.txt
+          # Add more variables as needed
+          
+      - name: Upload txt file
+        uses: actions/upload-artifact@v2
         with:
-          tag_name: v1
-          release_name: Release v1
-          body: |
-            Variable value: 20
-          draft: false
-          prerelease: false
-
-      - name: Upload asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./variable.txt
-          asset_name: variable.txt
-          asset_content_type: text/plain
-      
-
-
+          name: variables-file
+          path: variables.txt
