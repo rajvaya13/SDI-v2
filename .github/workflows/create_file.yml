@@ -1,8 +1,9 @@
-name: Main Workflow
+name: Create File with Variables
+
 on:
   push:
     branches:
-      - main
+      - mains  # Change this to your main branch name if necessary
 
 jobs:
   create_file_job:
@@ -17,9 +18,12 @@ jobs:
           echo "VAR1=value1" > variables.txt
           echo "VAR2=value2" >> variables.txt
           # Add more variables as needed
-          
+
+      - name: Show the content of variables.txt
+        run: cat variables.txt
+
       - name: Upload txt file
         uses: actions/upload-artifact@v2
         with:
           name: variables-file
-          path: ./variables.txt
+          path: variables.txt
