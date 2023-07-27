@@ -5,15 +5,18 @@ on:
       - mains
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Step 1 of secondary Workflow
-        uses: actions/checkout@v2
- 
-      - name: Step 2 of Workflow 2nd
-        run: echo "This is step 2 of Workflow A."    
+      - name: Set variable value
+        run: echo "VARIABLE_VALUE=20" > variable.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: shared-data
+          path: variable.txt
         
       
 
