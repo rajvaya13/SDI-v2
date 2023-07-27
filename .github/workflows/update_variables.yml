@@ -1,0 +1,32 @@
+name: Update Variables
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch name if different
+
+jobs:
+  update_variables:
+    name: Update Variable Values
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Read and set variables
+        id: set_vars
+        run: |
+          # Read the contents of variable.txt and set them as environment variables
+          while IFS= read -r line; do
+            export "$line"
+          done < variable.txt
+
+      # Add more steps here for your actual build/test/deploy jobs that use the environment variables set above.
+      # For demonstration purposes, we'll just print the values.
+
+      - name: Show variable values
+        run: |
+          echo "Variable 1: $VAR1"
+          echo "Variable 2: $VAR2"
+          # Add more echo statements for other variables as needed
