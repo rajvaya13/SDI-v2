@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: variables-file
-          path: my_temp_branch/variables.txt
+          path: ./my_temp_branch/variables.txt
