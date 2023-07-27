@@ -1,0 +1,19 @@
+name: The Main Workflow
+
+on:
+  workflow_run:
+    workflows: ["Secondary Workflow" , "third Workflow"]
+    types:
+      - completed
+
+jobs:
+  jobMain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1
+        uses: actions/checkout@v2
+ 
+      - name: Step 2
+        run: echo "This is step 2."  
+        #adc
