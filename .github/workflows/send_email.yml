@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Send an email using SMTP
-        uses: dawidd6/action-send-mail@v4
+        uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 587  # Replace with the appropriate SMTP port
