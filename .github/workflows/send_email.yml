@@ -1,0 +1,30 @@
+name: Send Email
+
+on:
+  push:
+    branches:
+      - mains
+      # Change this to the branch where you want the workflow to trigger (e.g., 'master' if that's your default branch)
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest  # You can choose a different runner if needed
+
+    steps:
+      - name: Send an email using SMTP
+        uses: dawidd6/action-send-mail@v4
+        with:
+          server_address: smtp.example.com  # Replace with your SMTP server address
+          server_port: 587  # Replace with the appropriate SMTP port
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          from: mp@tb.com
+          to: rv@tb.com
+          subject: Your subject here
+          body: |
+            Hi there,
+            
+            This is the content of the email.
+            
+            Best regards,
+            Your Name
