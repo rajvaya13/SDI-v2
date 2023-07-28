@@ -18,8 +18,8 @@ jobs:
           server_port: 587  # Replace with the appropriate SMTP port
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          from: mp@tb.com
-          to: rv@tb.com
+          from: lola.berserker99@gmail.com
+          to: raj.vaya2017@gmail.com
           subject: Your subject here
           body: |
             Hi there,
