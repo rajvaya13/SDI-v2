@@ -3,7 +3,7 @@ name: Update Variable
 on:
   push:
     branches:
-      - main  # Change this to your default branch name if it's not 'main'
+      - mains  # Change this to your default branch name if it's not 'main'
 
 jobs:
   update_variable:
