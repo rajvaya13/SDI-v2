@@ -1,34 +1,33 @@
-name: Update Variable File
+name: Update Variable
+
 on:
   push:
     branches:
-      - main # Change this to the branch you want the workflow to trigger ons
+      - main  # Change this to your default branch name if it's not 'main'
 
 jobs:
   update_variable:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
 
-    - name: Update Variable File
-      run: |
-        # Replace `YOUR_VALUE_1` and `YOUR_VALUE_2` with the desired values.
-        echo "variable1=YOUR_VALUE_1" > variable.txt
-        echo "variable2=YOUR_VALUE_2" >> variable.txt
-        
-    - name: upload the file 
-      run: |
-        git config user.name "GitHub Actions Bot"
-        git config user.email "<>"
-        /usr/bin/git config --local gc.auto 0
-        /usr/bin/git config --local http.https://github.com/.extraheader
-        pwd
-        ls -la ./scan_results/
-        mv ./scan_results ./var1-101
-        git fetch
-        git branch
-        git show-ref
-        git add -f ./var1-101
-        git commit -m "the changes are pushed @raj.vaya2017@gmail.com"
-        git push -u origin main
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Update variable.txt
+        run: |
+          # Retrieve the values of the input variables
+          VAR1="${{ secrets.INPUT_VAR1 }}"
+          VAR2="${{ secrets.INPUT_VAR2 }}"
+          # Add more variables if needed
+
+          # Update the content of variable.txt
+          echo "VAR1=${VAR1}" > variable.txt
+          echo "VAR2=${VAR2}" >> variable.txt
+          # Add more lines if you have additional variables to save
+          
+          # Commit and push the changes back to the repository
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add variable.txt
+          git commit -m "Update variable.txt with workflow inputs"
+          git push origin main  # Change 'main' to your default branch if needed
