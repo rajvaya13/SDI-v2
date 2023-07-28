@@ -26,8 +26,8 @@ jobs:
           # Add more lines if you have additional variables to save
           
           # Commit and push the changes back to the repository
-          git config user.name "GitHub Actions"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "rajvaya13"
+          git config user.email "raj.vaya2017@gmail.com"
           git add variable.txt
           git commit -m "Update variable.txt with workflow inputs"
           git push origin "${{ github.ref }}"
