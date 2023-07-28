@@ -3,7 +3,7 @@ name: Send Email
 on:
   push:
     branches:
-      - main
+      - mains
       # Change this to the branch where you want the workflow to trigger (e.g., 'master' if that's your default branch)
 
 jobs:
