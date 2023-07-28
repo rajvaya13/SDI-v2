@@ -30,4 +30,4 @@ jobs:
           git config user.email "raj.vaya2017@gmail.com"
           git add variable.txt
           git commit -m "Update variable.txt with workflow inputs"
-          git push origin "${{ github.ref }}" --token ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          git push origin "${{ github.ref }}" --set-upstream
