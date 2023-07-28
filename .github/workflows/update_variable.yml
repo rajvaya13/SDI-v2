@@ -16,8 +16,8 @@ jobs:
       - name: Update variable.txt
         run: |
           # Retrieve the values of the input variables
-          VAR1="${{ secrets.INPUT_VAR1 }}"
-          VAR2="${{ secrets.INPUT_VAR2 }}"
+          VAR1="${{ github.event.inputs.INPUT_VAR1 }}"
+          VAR2="${{ github.event.inputs.INPUT_VAR2 }}"
           # Add more variables if needed
 
           # Update the content of variable.txt
@@ -26,8 +26,8 @@ jobs:
           # Add more lines if you have additional variables to save
           
           # Commit and push the changes back to the repository
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add variable.txt
           git commit -m "Update variable.txt with workflow inputs"
-          git push origin main  # Change 'main' to your default branch if needed
+          git push origin "${{ github.ref }}"
